@@ -8,14 +8,13 @@ import javax.swing.JOptionPane;
 import Model.Usuarios;
 import MVCGUI.Login;
 import MVCGUI.Dashboard;
-import Controller.DashboardController;
 /**
  *
  * @author PC
  */
 public class LoginController {
-    private Login login;
-    private UsuariosDAO dao;
+    private final Login login;
+    private final UsuariosDAO dao;
     
     public LoginController(Login vistaLogin){
         this.login= vistaLogin;
@@ -25,14 +24,19 @@ public class LoginController {
         String usuario = login.flUsuario.getText();
         String password = login.flPassword.getText();
         Usuarios u = dao.Login(usuario, password);
-        if(u!= null){
-            Dashboard dashboard = new Dashboard();
-            DashboardController dashboardController = new DashboardController(dashboard);
-            dashboard.setVisible(true);
-            login.dispose();
-   
+        if(usuario.isEmpty() || password.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Ingrese los Campos");
         }else{
-            JOptionPane.showMessageDialog(null, "Login Incorrecto");
+            if(u!= null){
+                Dashboard dashboard = new Dashboard();
+                DashboardController dashboardController = new DashboardController(dashboard);
+                dashboard.setVisible(true);
+                login.dispose();
+
+            }else{
+                JOptionPane.showMessageDialog(null, "Login Incorrecto");
+        }  
         }
+        
     }
 }
