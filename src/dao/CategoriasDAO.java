@@ -56,6 +56,19 @@ public class CategoriasDAO {
         }
         return lista;
     }
+    public boolean EliminarCategoria(int id){
+        String sql = "DELETE FROM Categoria Where id_cat = ?";
+        try{
+            conn  = cn.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            return true;
+        }catch(SQLException e){
+            System.out.println(e);
+            return false;
+        }
+    }
         
     
 }

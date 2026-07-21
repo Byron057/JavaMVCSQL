@@ -50,5 +50,24 @@ public class CategoriasController {
             modelo.addRow(fila);
         }
     }
+    public void eliminarCategoria(){
+        int fila = vistaCategorias.tblCategorias.getSelectedRow();
+        if(fila == -1){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar un Registro");
+            return;
+        }else{
+            int opc = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar este Registro?", "Confirmar Accion", JOptionPane.YES_NO_OPTION);
+            if(opc!=JOptionPane.YES_OPTION){
+                return;
+            }else{
+                int id = Integer.parseInt(vistaCategorias.tblCategorias.getValueAt(fila, 0).toString());
+                if(dao.EliminarCategoria(id)){
+                    JOptionPane.showMessageDialog(null, "Eliminado Correctamente");
+                    listarCategorias();
+                }
+                
+            }
+        }
+    }
     
 }

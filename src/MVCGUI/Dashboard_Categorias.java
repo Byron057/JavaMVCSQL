@@ -47,6 +47,7 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tblCategorias = new javax.swing.JTable();
         btnGuardar = new javax.swing.JButton();
+        btnEliminarCategoria = new javax.swing.JButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -91,6 +92,7 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
         jScrollPane1.setViewportView(flDescripcionCategoria);
 
         flNombreCategoria.setOpaque(true);
+        flNombreCategoria.addActionListener(this::flNombreCategoriaActionPerformed);
 
         tblCategorias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,6 +109,9 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(this::btnGuardarActionPerformed);
+
+        btnEliminarCategoria.setText("Eliminar");
+        btnEliminarCategoria.addActionListener(this::btnEliminarCategoriaActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,7 +133,8 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnRegresar)
                         .addGap(18, 18, 18)
-                        .addComponent(btnGuardar)))
+                        .addComponent(btnGuardar))
+                    .addComponent(btnEliminarCategoria))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
@@ -162,11 +168,13 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnRegresar)
-                            .addComponent(btnGuardar)))
+                            .addComponent(btnGuardar))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(btnEliminarCategoria))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -188,6 +196,16 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
         CategoriasController categorias = new CategoriasController(this);
         categorias.insertCategoria();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnEliminarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCategoriaActionPerformed
+        // TODO add your handling code here:
+        CategoriasController categorias = new CategoriasController(this);
+        categorias.eliminarCategoria();
+    }//GEN-LAST:event_btnEliminarCategoriaActionPerformed
+
+    private void flNombreCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flNombreCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_flNombreCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,6 +233,7 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminarCategoria;
     public javax.swing.JButton btnGuardar;
     private javax.swing.JToggleButton btnRegresar;
     public javax.swing.JComboBox<String> cbxEstadoCategoria;
