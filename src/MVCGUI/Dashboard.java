@@ -48,6 +48,7 @@ public class Dashboard extends javax.swing.JFrame {
         btnGestionCategorias.addActionListener(this::btnGestionCategoriasActionPerformed);
 
         btnGestionProductos.setText("Gestion De Productos");
+        btnGestionProductos.addActionListener(this::btnGestionProductosActionPerformed);
 
         btnGestionUsuarios.setText("Gestion De Usuarios");
         btnGestionUsuarios.addActionListener(this::btnGestionUsuariosActionPerformed);
@@ -110,6 +111,13 @@ public class Dashboard extends javax.swing.JFrame {
         categorias.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnGestionCategoriasActionPerformed
+
+    private void btnGestionProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionProductosActionPerformed
+        // TODO add your handling code here:
+        Dashboard_Productos productos = new Dashboard_Productos();
+        productos.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnGestionProductosActionPerformed
 
     /**
      * @param args the command line arguments

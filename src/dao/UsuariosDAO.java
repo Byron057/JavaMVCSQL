@@ -89,5 +89,18 @@ public class UsuariosDAO {
         }
         return lista;
     }
+    public Boolean eliminarUsuario(int id){
+           String sql = "DELETE FROM usuarios Where id_usu = ?";
+        try{
+            conn  = cn.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            return true;
+        }catch(SQLException e){
+            System.out.println(e);
+            return false;
+        }
+    }
     
 }

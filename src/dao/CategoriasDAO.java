@@ -56,7 +56,7 @@ public class CategoriasDAO {
         }
         return lista;
     }
-    public boolean EliminarCategoria(int id){
+    public boolean eliminarCategoria(int id){
         String sql = "DELETE FROM Categoria Where id_cat = ?";
         try{
             conn  = cn.getConnection();
@@ -65,6 +65,22 @@ public class CategoriasDAO {
             ps.executeUpdate();
             return true;
         }catch(SQLException e){
+            System.out.println(e);
+            return false;
+        }
+    }
+    public boolean actualizarCategoria(Categorias c){
+        String sql = "UPDATE categoria set nombre_cat=?,descripcion_cat=?, estado_cat=? where id_cat=? ";
+        try{
+            conn = cn.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, c.getNombre());
+            ps.setString(2, c.getDescripcion());
+            ps.setString(3, c.getEstado());
+            ps.setInt(4, c.getId_categoria());
+            ps.executeUpdate();
+            return true;
+        }catch(SQLException e ){
             System.out.println(e);
             return false;
         }

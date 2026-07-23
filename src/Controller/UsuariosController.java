@@ -51,4 +51,23 @@ public class UsuariosController {
             modelo.addRow(fila);
         }
     }
+    public void eliminarUsuario(){
+        int fila = vistaUsuarios.tblUsuarios.getSelectedRow();
+        if(fila ==-1){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar una Fila");
+            return;
+        }else{
+            int id = Integer.parseInt(vistaUsuarios.tblUsuarios.getValueAt(fila, 0).toString());
+            if(dao.eliminarUsuario(id)){
+                int opc = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar este Registro?", "Confirmar Accion", JOptionPane.YES_NO_OPTION);
+                if(opc!=JOptionPane.YES_OPTION){
+                return;
+                }else{
+                    JOptionPane.showMessageDialog(null, "Eliminado Correctamente");
+                    listarUsuarios();
+                }
+            }
+        }
+        
+    }
 }

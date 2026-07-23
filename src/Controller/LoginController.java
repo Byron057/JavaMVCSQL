@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import Model.Usuarios;
 import MVCGUI.Login;
 import MVCGUI.Dashboard;
+import Model.Sesion;
 /**
  *
  * @author PC
@@ -30,13 +31,15 @@ public class LoginController {
             if(u!= null){
                 Dashboard dashboard = new Dashboard();
                 DashboardController dashboardController = new DashboardController(dashboard);
+                Sesion.usuario_actual = u;
                 dashboard.setVisible(true);
                 login.dispose();
+                
 
             }else{
                 JOptionPane.showMessageDialog(null, "Login Incorrecto");
-        }  
+            }  
         }
-        
     }
+    
 }

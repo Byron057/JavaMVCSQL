@@ -20,6 +20,7 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
         initComponents();
         CategoriasController categoria = new CategoriasController(this);
         categoria.listarCategorias();
+        limpiar();
         
     }
 
@@ -36,7 +37,7 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        btnRegresar = new javax.swing.JToggleButton();
+        btnRegresarCtegorias = new javax.swing.JToggleButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cbxEstadoCategoria = new javax.swing.JComboBox<>();
@@ -48,6 +49,8 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
         tblCategorias = new javax.swing.JTable();
         btnGuardar = new javax.swing.JButton();
         btnEliminarCategoria = new javax.swing.JButton();
+        btnActualizarCategoria = new javax.swing.JToggleButton();
+        btnLimpiarCategoria = new javax.swing.JToggleButton();
 
         jToggleButton1.setText("jToggleButton1");
 
@@ -69,8 +72,8 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Gestion de Categorias");
 
-        btnRegresar.setText("Regresar");
-        btnRegresar.addActionListener(this::btnRegresarActionPerformed);
+        btnRegresarCtegorias.setText("Regresar");
+        btnRegresarCtegorias.addActionListener(this::btnRegresarCtegoriasActionPerformed);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("Nombre:");
@@ -105,6 +108,11 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
                 "ID", "Descripcion", "Nombre", "Estado"
             }
         ));
+        tblCategorias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCategoriasMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tblCategorias);
 
         btnGuardar.setText("Guardar");
@@ -113,6 +121,12 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
         btnEliminarCategoria.setText("Eliminar");
         btnEliminarCategoria.addActionListener(this::btnEliminarCategoriaActionPerformed);
 
+        btnActualizarCategoria.setText("Editar");
+        btnActualizarCategoria.addActionListener(this::btnActualizarCategoriaActionPerformed);
+
+        btnLimpiarCategoria.setText("Limpiar");
+        btnLimpiarCategoria.addActionListener(this::btnLimpiarCategoriaActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,28 +134,34 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(cbxEstadoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(flNombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(btnRegresarCtegorias)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnGuardar)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnLimpiarCategoria)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxEstadoCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(flNombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnRegresar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnGuardar))
-                    .addComponent(btnEliminarCategoria))
+                        .addComponent(btnEliminarCategoria)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnActualizarCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(183, 183, 183)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,27 +185,30 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
                                     .addComponent(flNombreCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(26, 26, 26)
                                 .addComponent(jLabel3)))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnRegresar)
-                            .addComponent(btnGuardar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(btnEliminarCategoria))
+                            .addComponent(btnGuardar)
+                            .addComponent(btnRegresarCtegorias))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnEliminarCategoria)
+                            .addComponent(btnActualizarCategoria)
+                            .addComponent(btnLimpiarCategoria)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+    private void btnRegresarCtegoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarCtegoriasActionPerformed
         // TODO add your handling code here:
         Dashboard dashboard = new Dashboard();
         dashboard.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_btnRegresarActionPerformed
+    }//GEN-LAST:event_btnRegresarCtegoriasActionPerformed
 
     private void cbxEstadoCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEstadoCategoriaActionPerformed
         // TODO add your handling code here:
@@ -195,17 +218,49 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
         // TODO add your handling code here:
         CategoriasController categorias = new CategoriasController(this);
         categorias.insertCategoria();
+        categorias.listarCategorias();
+        limpiar();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnEliminarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCategoriaActionPerformed
         // TODO add your handling code here:
         CategoriasController categorias = new CategoriasController(this);
         categorias.eliminarCategoria();
+        limpiar();
     }//GEN-LAST:event_btnEliminarCategoriaActionPerformed
 
     private void flNombreCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_flNombreCategoriaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_flNombreCategoriaActionPerformed
+
+    private void tblCategoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCategoriasMouseClicked
+        // TODO add your handling code here:
+        int fila = tblCategorias.getSelectedRow();
+        if(fila >= 0){
+            String id = tblCategorias.getValueAt(fila,0).toString();
+            String nombre = tblCategorias.getValueAt(fila, 1).toString();
+            String descripcion = tblCategorias.getValueAt(fila, 2).toString();
+            String estado = tblCategorias.getValueAt(fila, 3).toString();
+            flNombreCategoria.setText(nombre);
+            flDescripcionCategoria.setText(descripcion);
+            cbxEstadoCategoria.setSelectedItem(estado);
+        }
+    }//GEN-LAST:event_tblCategoriasMouseClicked
+
+    private void btnActualizarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarCategoriaActionPerformed
+        // TODO add your handling code here:
+        CategoriasController control = new CategoriasController(this);
+        control.editarCategoria();
+        limpiar();
+    }//GEN-LAST:event_btnActualizarCategoriaActionPerformed
+    public void limpiar(){
+        flNombreCategoria.setText("");
+        flDescripcionCategoria.setText("");
+        cbxEstadoCategoria.setSelectedIndex(0);
+    }
+    private void btnLimpiarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLimpiarCategoriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -233,9 +288,11 @@ public class Dashboard_Categorias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnActualizarCategoria;
     private javax.swing.JButton btnEliminarCategoria;
     public javax.swing.JButton btnGuardar;
-    private javax.swing.JToggleButton btnRegresar;
+    private javax.swing.JToggleButton btnLimpiarCategoria;
+    private javax.swing.JToggleButton btnRegresarCtegorias;
     public javax.swing.JComboBox<String> cbxEstadoCategoria;
     public javax.swing.JTextArea flDescripcionCategoria;
     public javax.swing.JTextField flNombreCategoria;

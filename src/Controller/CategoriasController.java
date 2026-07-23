@@ -61,12 +61,30 @@ public class CategoriasController {
                 return;
             }else{
                 int id = Integer.parseInt(vistaCategorias.tblCategorias.getValueAt(fila, 0).toString());
-                if(dao.EliminarCategoria(id)){
+                if(dao.eliminarCategoria(id)){
                     JOptionPane.showMessageDialog(null, "Eliminado Correctamente");
                     listarCategorias();
                 }
                 
             }
+        }
+    }
+    public void editarCategoria(){
+        int fila = vistaCategorias.tblCategorias.getSelectedRow();
+        if(fila ==-1){
+            JOptionPane.showMessageDialog(null, "Debe Seleccionar un Registro");
+            return;
+        }
+        Categorias c = new Categorias();
+        c.setId_categoria(Integer.parseInt(vistaCategorias.tblCategorias.getValueAt(fila, 0).toString()));
+        c.setNombre(vistaCategorias.flNombreCategoria.getText());
+        c.setDescripcion(vistaCategorias.flDescripcionCategoria.getText());
+        c.setEstado(vistaCategorias.cbxEstadoCategoria.getSelectedItem().toString());
+        if(dao.actualizarCategoria(c)){
+            JOptionPane.showMessageDialog(null, "Categoria Actualizada con Exito");
+            listarCategorias();
+        }else{
+            JOptionPane.showMessageDialog(null, "No Se pudo Actualizar");
         }
     }
     

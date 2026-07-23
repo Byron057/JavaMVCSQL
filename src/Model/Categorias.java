@@ -10,9 +10,9 @@ package Model;
  */
 public class Categorias {
     private int id_categoria;
-    private String Nombre;
-    private String Descripcion;
-    private String Estado;
+    private String nombre;
+    private String descripcion;
+    private String estado;
 
     public int getId_categoria() {
         return id_categoria;
@@ -23,27 +23,31 @@ public class Categorias {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDescripcion() {
-        return Descripcion;
+        return descripcion;
     }
 
-    public void setDescripcion(String Descripcion) {
-        this.Descripcion = Descripcion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getEstado() {
-        return Estado;
+        return estado;
     }
 
-    public void setEstado(String Estado) {
-        this.Estado = Estado;
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    @Override
+    public String toString(){
+        return nombre;
     }
     
 }
