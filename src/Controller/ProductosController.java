@@ -31,11 +31,11 @@ public class ProductosController {
             }
             
     }
-    public void insertCategoria(){
+    public void insertProductos(){
         Productos p = new Productos();
         p.setNombre(vistaProductos.flNombreProducto.getText());
-        p.setDescripcion(vistaProductos.flDescfripcionProducto.getText());
-        p.setStock(Integer.parseInt(vistaProductos.flDescfripcionProducto.getText()));
+        p.setDescripcion(vistaProductos.flDescripcionProducto.getText());
+        p.setStock(Integer.parseInt(vistaProductos.flStockProducto.getText()));
         p.setPrecio(Double.parseDouble(vistaProductos.flPrecioProducto.getText()));
         p.setEstado(vistaProductos.cbxEstadoProducto.getSelectedItem().toString());
         Categorias cat = (Categorias) vistaProductos.cbxCategoriaProducto.getSelectedItem();
